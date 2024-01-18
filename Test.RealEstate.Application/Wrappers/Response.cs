@@ -52,11 +52,11 @@ namespace Test.RealEstate.Application.Wrappers
             return null;
         }
 
-        public Response CreateNotFoundResponse(int entityId, string message)
+        public Response BadRequest(int entityId, string message)
         {
             return new Response
             {
-                ResponseCode = (int)HttpStatusCode.NoContent,
+                ResponseCode = (int)HttpStatusCode.BadRequest,
                 Message = message,
                 Status = false,
                 Data = entityId

@@ -2,6 +2,7 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
+    using Swashbuckle.AspNetCore.Annotations;
     using System.Net;
     using Test.Backend.Application.Behaviours;
     using Test.RealEstate.Application.Behaviours;
@@ -18,10 +19,11 @@
             _mediator = mediator;
         }
 
-        [HttpPost(Name = "CreateOwner")]
+        [HttpPost("Create")]
         [ProducesResponseType(typeof(Response<int>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
+        [SwaggerOperation(Summary = "Method to create a owner", Description = "Create a owner and return the created values")]
         /// <summary>
         /// Creates a new Owner.
         /// </summary>

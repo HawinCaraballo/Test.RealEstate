@@ -7,7 +7,7 @@
         public string Name { get; set; } = null!;
         public string Address { get; set; } = null!;
         public double Price { get; set; }
-        public string? CodeInternal { get; set; }
+        public string CodeInternal { get; set; } = string.Empty;
         public int? Year { get; set; }
         public int IdOwner { get; set; }
         public virtual Owner IdOwnerNavigation { get; set; } 

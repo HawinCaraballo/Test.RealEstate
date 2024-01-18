@@ -46,7 +46,7 @@
                 if (propertyImageEntity is null)
                 {
                     _logger.LogInformation(ConstantPropertyImageText.ErrorCreatePropertyImage);
-                    return response.CreateNotFoundResponse(request.IdProperty, ConstantPropertyImageText.ErrorCreatePropertyImage);
+                    return response.BadRequest(request.IdProperty, ConstantPropertyImageText.ErrorCreatePropertyImage);
                 }
                 _logger.LogInformation($"{ConstantConfirmText.SuccessObject} {JsonConvert.SerializeObject(propertyImageEntity)}");
                 return response.SuccessResponse(_mapper.Map<PropertyDto>(propertyImageEntity), ConstantConfirmText.Success);

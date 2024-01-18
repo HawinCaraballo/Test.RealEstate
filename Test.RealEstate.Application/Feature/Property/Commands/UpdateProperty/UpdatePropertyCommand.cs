@@ -1,13 +1,9 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Test.RealEstate.Application.Behaviours;
+﻿
 
 namespace Test.RealEstate.Application.Feature.Property.Commands.UpdateProperty
 {
+    using MediatR;
+    using Test.RealEstate.Application.Behaviours;
     public class UpdatePropertyCommand : IRequest<Response>
     {
         public int IdProperty { get; set; }

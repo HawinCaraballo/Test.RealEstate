@@ -15,9 +15,9 @@
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
-            services.AddScoped<IPropertyRepository, PropertyRepository>();
-            services.AddScoped<IPropertyImageRepository, PropertyImageRepository>();
-            services.AddScoped<IOwnerRepository, OwnerRepository>();
+            services.AddTransient<IPropertyRepository, PropertyRepository>();
+            services.AddTransient<IPropertyImageRepository, PropertyImageRepository>();
+            services.AddTransient<IOwnerRepository, OwnerRepository>();
 
             return services;
         }

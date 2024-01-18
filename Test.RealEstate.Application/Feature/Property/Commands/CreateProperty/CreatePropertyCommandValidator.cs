@@ -7,10 +7,10 @@
         public CreatePropertyCommandValidator()
         {
             RuleFor(p => p.Name)
-                .NotNull().WithMessage("Name cannot be null");
+                .NotNull().NotEmpty().WithMessage("Name cannot be null");
 
             RuleFor(p => p.Address)
-                .NotNull().WithMessage("Address cannot be null");
+                .NotNull().NotEmpty().WithMessage("Address cannot be null");
 
             RuleFor(p => p.Price)
                 .NotNull().WithMessage("Price cannot be null");

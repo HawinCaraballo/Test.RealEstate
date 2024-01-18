@@ -42,14 +42,14 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.ChangePricePrope
                 var propertyEntity = await repository.GetByIdAsync(request.IdProperty);
                 if (propertyEntity is null) {
                     logger.LogInformation(ConstantPropertyText.PropertyNoExists);
-                    return response.CreateNotFoundResponse(request.IdProperty, ConstantPropertyText.PropertyNoExists);
+                    return response.BadRequest(request.IdProperty, ConstantPropertyText.PropertyNoExists);
                 }
                 propertyEntity.Price = request.Price;
                 var updateEntity = await repository.UpdateAsync(propertyEntity);
                 if (updateEntity is null)
                 {
                     logger.LogInformation(ConstantPropertyText.ErrorUpdatePropertyPrice);
-                    return response.CreateNotFoundResponse(request.IdProperty, ConstantPropertyText.ErrorUpdatePropertyPrice);
+                    return response.BadRequest(request.IdProperty, ConstantPropertyText.ErrorUpdatePropertyPrice);
                 }
                 logger.LogInformation($"{ConstantConfirmText.SuccessObject} {JsonConvert.SerializeObject(updateEntity)}");
                 return response.SuccessResponse(mapper.Map<PropertyDto>(updateEntity), ConstantConfirmText.Success);

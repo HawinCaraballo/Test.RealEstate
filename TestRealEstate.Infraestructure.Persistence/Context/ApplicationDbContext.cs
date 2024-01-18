@@ -1,4 +1,16 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Infraestructure.Persistence
+// Author           : Hawin Caraballo
+// Created          : 21-09-2023
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="ApplicationDbContext.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 namespace Test.RealEstate.Infraestructure.Persistence.Context
 {
     using Microsoft.EntityFrameworkCore;

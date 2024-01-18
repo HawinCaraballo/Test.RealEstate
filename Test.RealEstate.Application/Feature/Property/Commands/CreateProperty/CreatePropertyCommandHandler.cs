@@ -51,7 +51,7 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.CreateProperty
                     return response.SuccessResponse(_mapper.Map<PropertyDto>(resultEntity), ConstantConfirmText.Success);
                 }
                 _logger.LogInformation(ConstantPropertyText.ErrorCreateProperty);
-                return response.CreateNotFoundResponse(0, ConstantPropertyText.ErrorCreateProperty);
+                return response.BadRequest(0, ConstantPropertyText.ErrorCreateProperty);
             }
             catch (Exception ex)
             {

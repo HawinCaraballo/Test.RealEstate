@@ -2,6 +2,7 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
+    using Swashbuckle.AspNetCore.Annotations;
     using System.Net;
     using Test.Backend.Application.Behaviours;
     using Test.RealEstate.Application.Behaviours;
@@ -20,23 +21,19 @@
             _mediator = mediator;
         }
 
-        [HttpPost(Name = "CreatePropertyImage")]
+        [HttpPost("Create")]
         [ProducesResponseType(typeof(Response<int>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
+        [SwaggerOperation(Summary = "Method to create a PropertyImage", Description = "Create a PropertyImage and return the created values")]
+        /// <summary>
+        /// Creates a new PropertyImage.
+        /// </summary>
+        /// <param name="command">The command to create a PropertyImage.</param>
         public async Task<ActionResult<Response>> CreatePropertyImage([FromForm] UploadImage file)
         {
-            var imageCommand = new CreatePropertyImageCommand();
-            imageCommand.FileName = file.FileImage.FileName;
-            imageCommand.IdProperty = file.IdProperty;
-
-            using (var memoryStream = new MemoryStream())
-            {
-                await file.FileImage.CopyToAsync(memoryStream);
-                imageCommand.File = memoryStream.ToArray();
-            }
-
-            var response = await _mediator.Send(imageCommand);
+            CreatePropertyImageCommand propertyImageCommand = await GetPropertyImage(file);
+            var response = await _mediator.Send(propertyImageCommand);
             return response.ResponseCode switch
             {
                 (int)HttpStatusCode.OK => Ok(response),
@@ -46,6 +43,28 @@
                 _ => throw new NotImplementedException()
             };
 
+        }
+
+        /// <summary>
+        /// Get memorystream of UploadImage for CreatePropertyImage.File 
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        private static async Task<CreatePropertyImageCommand> GetPropertyImage(UploadImage file)
+        {
+            var propertyImageCommand = new CreatePropertyImageCommand
+            {
+                FileName = file.FileImage.FileName,
+                IdProperty = file.IdProperty
+            };
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.FileImage.CopyToAsync(memoryStream);
+                propertyImageCommand.File = memoryStream.ToArray();
+            }
+
+            return propertyImageCommand;
         }
 
     }

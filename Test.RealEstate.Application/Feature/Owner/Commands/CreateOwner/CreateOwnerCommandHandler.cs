@@ -49,7 +49,7 @@ namespace Test.RealEstate.Application.Feature.Owner.Commands.CreateOwner
                     return response.SuccessResponse(_mapper.Map<OwnerDto>(ownerEntity), ConstantConfirmText.Success);
                 }
                 _logger.LogInformation(ConstantOwnerText.ErrorCreateOwner);
-                return response.CreateNotFoundResponse(0, ConstantOwnerText.ErrorCreateOwner);
+                return response.BadRequest(0, ConstantOwnerText.ErrorCreateOwner);
             }
             catch (Exception ex)
             {

@@ -6,6 +6,8 @@ namespace Test.RealEstate.Application.Feature.Property.Queries.GetAllProperties
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using Test.RealEstate.Application.Behaviours;
+    using Test.RealEstate.Application.Constant;
+    using Test.RealEstate.Application.Constant.Feature.Property;
     using Test.RealEstate.Application.Feature.Property.Dtos;
     using Test.RealEstate.Application.Interfaces;
     public class GetAllPropertiesQueryHandler : IRequestHandler<GetAllPropertiesQuery, Response>
@@ -26,21 +28,21 @@ namespace Test.RealEstate.Application.Feature.Property.Queries.GetAllProperties
             var response = new Response();
             try
             {
-                var propertyEntity = await _repository.GetPagedReponseAsync(request.PageNumber, request.PageSize);
-                if (propertyEntity is null)
+                var listPropertyEntity = await _repository.GetPagedReponseAsync(request.PageNumber, request.PageSize);
+                if (listPropertyEntity is null)
                 {
-                    _logger.LogInformation($"Property does not exists");
-                    return response.CreateNotFoundResponse(0, "Property not exists");
+                    _logger.LogInformation(ConstantPropertyText.PropertyNoExists);
+                    return response.BadRequest(0, ConstantPropertyText.PropertyNoExists);
                 }
 
-                _logger.LogInformation($"Get Object return services => ({JsonConvert.SerializeObject(propertyEntity)})");
-                return response.SuccessResponse(_mapper.Map<PropertyDto>(propertyEntity), "Success");
+                _logger.LogInformation($"{ConstantConfirmText.SuccesReturnObject} {JsonConvert.SerializeObject(listPropertyEntity)}");
+                return response.SuccessResponse(_mapper.Map<List<PropertyDto>>(listPropertyEntity), ConstantConfirmText.Success);
 
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occurred while retrieving the Property => ({ex.Message})");
-                return response.CreateInternalServerErrorResponse($"An error occurred while retrieving the Property.", ex.Message);
+                _logger.LogError($"{ConstantErrorText.ErrorException} Property => ({ex.Message})");
+                return response.CreateInternalServerErrorResponse($"{ConstantErrorText.ErrorException} Property.", ex.Message);
             }
         }
     }
