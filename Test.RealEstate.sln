@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{ABB5EF45-65FD-44B0-A1DF-BEFE677B9A1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A4505C4C-B768-414E-91C2-6686ABEE42E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "Infraestructure", "{CE8F6BF7-E96B-4F6B-AD21-34E2CC827F2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C0126A9E-94E2-4462-B6D8-42DB4FC39761}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{B663B0F7-CD2A-4BF3-8158-0AD210EEF77D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{0ADACDD1-0029-4C82-8948-83AF2AA5B5FC}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.RealEstate.Domain", "Test.RealEstate.Domain\Test.RealEstate.Domain.csproj", "{C9725953-EFB5-4E47-87A2-277F8FE8252C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.RealEstate.Application", "Test.RealEstate.Application\Test.RealEstate.Application.csproj", "{08EAF352-D3F6-4FC3-9FD5-C70D59361891}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.RealEstate.Infraestructure.Persistence", "TestRealEstate.Infraestructure.Persistence\Test.RealEstate.Infraestructure.Persistence.csproj", "{9DDF0F73-8291-4E8A-A2CC-07CDCEA55ABD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.RealEstate.API", "Test.RealState.API\Test.RealEstate.API.csproj", "{440AF87A-DF27-4F25-A5D2-29353A07240C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.RealEstate.Application.UnitTests", "Test.RealEstate.Application.UnitTests\Test.RealEstate.Application.UnitTests.csproj", "{ACF61080-A078-4944-A3D8-EEE2C604E461}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9725953-EFB5-4E47-87A2-277F8FE8252C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9725953-EFB5-4E47-87A2-277F8FE8252C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9725953-EFB5-4E47-87A2-277F8FE8252C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9725953-EFB5-4E47-87A2-277F8FE8252C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08EAF352-D3F6-4FC3-9FD5-C70D59361891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08EAF352-D3F6-4FC3-9FD5-C70D59361891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08EAF352-D3F6-4FC3-9FD5-C70D59361891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08EAF352-D3F6-4FC3-9FD5-C70D59361891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DDF0F73-8291-4E8A-A2CC-07CDCEA55ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DDF0F73-8291-4E8A-A2CC-07CDCEA55ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DDF0F73-8291-4E8A-A2CC-07CDCEA55ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DDF0F73-8291-4E8A-A2CC-07CDCEA55ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{440AF87A-DF27-4F25-A5D2-29353A07240C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440AF87A-DF27-4F25-A5D2-29353A07240C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440AF87A-DF27-4F25-A5D2-29353A07240C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440AF87A-DF27-4F25-A5D2-29353A07240C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACF61080-A078-4944-A3D8-EEE2C604E461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACF61080-A078-4944-A3D8-EEE2C604E461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACF61080-A078-4944-A3D8-EEE2C604E461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACF61080-A078-4944-A3D8-EEE2C604E461}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ABB5EF45-65FD-44B0-A1DF-BEFE677B9A1B} = {B663B0F7-CD2A-4BF3-8158-0AD210EEF77D}
+		{A4505C4C-B768-414E-91C2-6686ABEE42E4} = {B663B0F7-CD2A-4BF3-8158-0AD210EEF77D}
+		{CE8F6BF7-E96B-4F6B-AD21-34E2CC827F2F} = {B663B0F7-CD2A-4BF3-8158-0AD210EEF77D}
+		{C9725953-EFB5-4E47-87A2-277F8FE8252C} = {A4505C4C-B768-414E-91C2-6686ABEE42E4}
+		{08EAF352-D3F6-4FC3-9FD5-C70D59361891} = {A4505C4C-B768-414E-91C2-6686ABEE42E4}
+		{9DDF0F73-8291-4E8A-A2CC-07CDCEA55ABD} = {CE8F6BF7-E96B-4F6B-AD21-34E2CC827F2F}
+		{440AF87A-DF27-4F25-A5D2-29353A07240C} = {ABB5EF45-65FD-44B0-A1DF-BEFE677B9A1B}
+		{ACF61080-A078-4944-A3D8-EEE2C604E461} = {C0126A9E-94E2-4462-B6D8-42DB4FC39761}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4BDEDC2-1C49-4464-B01C-BE4F5BA785B6}
+	EndGlobalSection
+EndGlobal
