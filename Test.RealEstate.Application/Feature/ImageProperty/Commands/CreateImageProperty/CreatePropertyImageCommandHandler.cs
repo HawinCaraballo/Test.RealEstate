@@ -19,16 +19,13 @@
         private readonly IMapper _mapper;
         private readonly IPropertyImageRepository _repository;
         private readonly ILogger<CreatePropertyImageCommandHandler> _logger;
-        private readonly IEnumerable<IValidator<CreatePropertyImageCommand>> _validators;
 
         public CreatePropertyImageCommandHandler(IMapper mapper, IPropertyImageRepository repository, 
-                                                ILogger<CreatePropertyImageCommandHandler> logger, 
-                                                IEnumerable<IValidator<CreatePropertyImageCommand>> validators)
+                                                ILogger<CreatePropertyImageCommandHandler> logger)
         {
             _mapper = mapper;
             _repository = repository;
             _logger = logger;
-            _validators = validators;
         }
 
         public async Task<Response> Handle(CreatePropertyImageCommand request, CancellationToken cancellationToken)
@@ -36,12 +33,6 @@
             var response = new Response();
             try
             {
-                var validationResponse = response.ValidateCommand(request, _validators);
-                if (validationResponse != null)
-                {
-                    _logger.LogInformation($"{ConstantValidationText.ErrorValidationFrom} {JsonConvert.SerializeObject(request)}");
-                    return validationResponse;
-                }
                 var propertyImageEntity = await _repository.AddAsync(_mapper.Map<PropertyImage>(request));
                 if (propertyImageEntity is null)
                 {

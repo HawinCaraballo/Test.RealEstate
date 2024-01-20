@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using Test.RealEstate.API.Middlewares;
 using Test.RealEstate.Application;
 using Test.RealEstate.Infraestructure.Persistence;
 
@@ -34,6 +35,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseAuthorization();
 

@@ -4,7 +4,6 @@
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using System.Net;
-    using Test.Backend.Application.Behaviours;
     using Test.RealEstate.Application.Behaviours;
     using Test.RealEstate.Application.Feature.Property.Commands.ChangePriceProperty;
     using Test.RealEstate.Application.Feature.Property.Commands.CreateProperty;
@@ -26,7 +25,7 @@
 
         [HttpPost("Create")]
         [ProducesResponseType(typeof(Response<int>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
+        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Method to create a property", Description = "Create a property and return the created values")]
         /// <summary>
@@ -48,7 +47,7 @@
 
         [HttpPut("Update")]
         [ProducesResponseType(typeof(Response<PropertyDto>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
+        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Method to update an existing property", Description = "update an existing property and return the update values")]
         /// <summary>
@@ -70,7 +69,7 @@
 
         [HttpPut("ChangePrice")]
         [ProducesResponseType(typeof(Response<PropertyDto>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
+        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Method to update price of an existing property", Description = "update price of an existing property and return the update values")]
         /// <summary>
@@ -93,7 +92,7 @@
 
         [HttpGet("List")]
         [ProducesResponseType(typeof(Response<List<PropertyDto>>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
+        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Get a list of all properties", Description = "Retrieve a list of all properties.")]
         /// <summary>

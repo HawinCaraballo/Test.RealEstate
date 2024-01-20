@@ -4,7 +4,6 @@
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using System.Net;
-    using Test.Backend.Application.Behaviours;
     using Test.RealEstate.Application.Behaviours;
     using Test.RealEstate.Application.Feature.ImageProperty.Commands.CreateImageProperty;
     using Test.RealEstate.Application.Wrappers;
@@ -23,7 +22,7 @@
 
         [HttpPost("Create")]
         [ProducesResponseType(typeof(Response<int>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
+        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Method to create a PropertyImage", Description = "Create a PropertyImage and return the created values")]
         /// <summary>

@@ -15,14 +15,13 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.UpdateProperty
     {
         private readonly IPropertyRepository _repository;
         private readonly IMapper _mapper;
-        private readonly IEnumerable<IValidator<UpdatePropertyCommand>> _validators;
         private readonly ILogger<UpdatePropertyCommandHandler> _logger;
 
-        public UpdatePropertyCommandHandler(IPropertyRepository repository, IMapper mapper, IEnumerable<IValidator<UpdatePropertyCommand>> validators, ILogger<UpdatePropertyCommandHandler> logger)
+        public UpdatePropertyCommandHandler(IPropertyRepository repository, IMapper mapper, 
+                                            ILogger<UpdatePropertyCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
-            _validators = validators;
             _logger = logger;
         }
 
@@ -31,13 +30,6 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.UpdateProperty
             var response = new Response();
             try
             {
-                var validationResponse = response.ValidateCommand(request, _validators);
-                if (validationResponse != null)
-                {
-                    _logger.LogInformation($"{ConstantValidationText.ErrorValidationFrom} ({JsonConvert.SerializeObject(request)})");
-                    return validationResponse;
-                }
-
                 var propertyEntity = await _repository.GetByIdAsync(request.IdProperty);
                 if (propertyEntity is null)
                 {

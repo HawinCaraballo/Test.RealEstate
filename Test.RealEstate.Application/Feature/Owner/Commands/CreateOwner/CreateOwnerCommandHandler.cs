@@ -17,16 +17,13 @@ namespace Test.RealEstate.Application.Feature.Owner.Commands.CreateOwner
     {
         private readonly IOwnerRepository _repository;
         private readonly IMapper _mapper;
-        private readonly IEnumerable<IValidator<CreateOwnerCommand>> _validators;
         private readonly ILogger<CreateOwnerCommandHandler> _logger;
 
         public CreateOwnerCommandHandler(IOwnerRepository repository, IMapper mapper, 
-                                        IEnumerable<IValidator<CreateOwnerCommand>> validators, 
                                         ILogger<CreateOwnerCommandHandler> logger)
         {
             _repository = repository;
             _mapper = mapper;
-            _validators = validators;
             _logger = logger;
         }
 
@@ -35,12 +32,6 @@ namespace Test.RealEstate.Application.Feature.Owner.Commands.CreateOwner
             var response = new Response();
             try
             {
-                var validationResponse = response.ValidateCommand(request, _validators);
-                if (validationResponse != null)
-                {
-                    _logger.LogInformation($"{ConstantValidationText.ErrorValidationFrom} {JsonConvert.SerializeObject(request)}");
-                    return validationResponse;
-                }
                 _logger.LogInformation(ConstantValidationText.SuccesValidation);
                 var ownerEntity = await _repository.AddAsync(_mapper.Map<Owner>(request));
                 if (ownerEntity != null)

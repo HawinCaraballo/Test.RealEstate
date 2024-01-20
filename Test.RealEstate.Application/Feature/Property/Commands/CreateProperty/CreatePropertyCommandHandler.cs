@@ -20,14 +20,14 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.CreateProperty
     {
         private readonly IPropertyRepository _repository;
         private readonly IMapper _mapper;
-        private readonly IEnumerable<IValidator<CreatePropertyCommand>> _validators;
         private readonly ILogger<CreatePropertyCommandHandler> _logger;
 
-        public CreatePropertyCommandHandler(IPropertyRepository propertyRepository, IMapper mapper, IEnumerable<IValidator<CreatePropertyCommand>> validators, ILogger<CreatePropertyCommandHandler> logger)
+        public CreatePropertyCommandHandler(IPropertyRepository propertyRepository, 
+                                            IMapper mapper, 
+                                            ILogger<CreatePropertyCommandHandler> logger)
         {
             _repository = propertyRepository;
             _mapper = mapper;
-            _validators = validators;
             _logger = logger;
         }
 
@@ -36,12 +36,6 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.CreateProperty
             var response = new Response();
             try
             {
-                var validationResponse = response.ValidateCommand(request, _validators);
-                if (validationResponse != null)
-                {
-                    _logger.LogInformation($"{ConstantValidationText.ErrorValidationFrom} {JsonConvert.SerializeObject(request)}");
-                    return validationResponse;
-                }
                 _logger.LogInformation(ConstantValidationText.SuccesValidation);
                 var propertyEntity = _mapper.Map<Property>(request);
                 var resultEntity = await _repository.AddAsync(propertyEntity);

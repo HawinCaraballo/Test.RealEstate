@@ -7,5 +7,6 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.ChangePricePrope
     {
         public int IdProperty { get; set; }
         public double Price { get; set; }
+        public string Mensaje { get; set; } = string.Empty;
     }
 }
