@@ -1,4 +1,16 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Application.Interfaces
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="IAsyncRepository.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 namespace Test.RealEstate.Application.Interfaces
 {
     using Test.RealEstate.Domain.Common;
@@ -10,11 +22,6 @@ namespace Test.RealEstate.Application.Interfaces
         Task<T> AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<bool> DeleteAsync(T entity);
-
-        //UnitOfWork
-        void AddEntity(T entity);
-        void UpdateEntity(T entity);
-        void DeleteEntity(T entity);
 
     }
 }

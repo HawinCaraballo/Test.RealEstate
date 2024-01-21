@@ -1,7 +1,19 @@
-﻿namespace Test.RealEstate.Application.Feature.ImageProperty.Commands.CreateImageProperty
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Application.Feature.ImageProperty.Commands.CreateImageProperty
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="CreatePropertyImageCommandHandler.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace Test.RealEstate.Application.Feature.ImageProperty.Commands.CreateImageProperty
 {
     using AutoMapper;
-    using FluentValidation;
     using MediatR;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
@@ -31,22 +43,14 @@
         public async Task<Response> Handle(CreatePropertyImageCommand request, CancellationToken cancellationToken)
         {
             var response = new Response();
-            try
+            var propertyImageEntity = await _repository.AddAsync(_mapper.Map<PropertyImage>(request));
+            if (propertyImageEntity is null)
             {
-                var propertyImageEntity = await _repository.AddAsync(_mapper.Map<PropertyImage>(request));
-                if (propertyImageEntity is null)
-                {
-                    _logger.LogInformation(ConstantPropertyImageText.ErrorCreatePropertyImage);
-                    return response.BadRequest(request.IdProperty, ConstantPropertyImageText.ErrorCreatePropertyImage);
-                }
-                _logger.LogInformation($"{ConstantConfirmText.SuccessObject} {JsonConvert.SerializeObject(propertyImageEntity)}");
-                return response.SuccessResponse(_mapper.Map<PropertyDto>(propertyImageEntity), ConstantConfirmText.Success);
+                _logger.LogInformation(ConstantPropertyImageText.ErrorCreatePropertyImage);
+                return response.BadRequest(request.IdProperty, ConstantPropertyImageText.ErrorCreatePropertyImage);
             }
-            catch (Exception ex)
-            {
-                _logger.LogError($"{ConstantErrorText.ErrorException} PropertyImage => ({ex.Message})");
-                return response.CreateInternalServerErrorResponse($"{ConstantErrorText.ErrorException} PropertyImage.", ex.Message);
-            }
+            _logger.LogInformation($"{ConstantConfirmText.SuccessObject} {JsonConvert.SerializeObject(propertyImageEntity)}");
+            return response.SuccessResponse(_mapper.Map<PropertyDto>(propertyImageEntity), ConstantConfirmText.Success);
         }
     }
 }

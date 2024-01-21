@@ -1,8 +1,19 @@
-﻿
-using Test.RealEstate.Domain.Common;
-
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Domain.Entities
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="PropertyTrace.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 namespace Test.RealEstate.Domain.Entities
 {
+    using Test.RealEstate.Domain.Common;
     public class PropertyTrace : BaseEntity
     {
         public int IdPropertyTrace { get; set; }

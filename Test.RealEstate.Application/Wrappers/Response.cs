@@ -1,11 +1,21 @@
-﻿
-using FluentValidation.Results;
-using FluentValidation;
-using System.Net;
-using Test.RealEstate.Application.Behaviours;
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Application.Wrappers
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="Response.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 namespace Test.RealEstate.Application.Wrappers
 {
+    using System.Net;
+    using Test.RealEstate.Application.Behaviours;
     public class Response<T>
     {
         public Response(int responseCode, string message, bool status, T data)
@@ -21,36 +31,6 @@ namespace Test.RealEstate.Application.Wrappers
             ResponseCode = 500;
             Status = false;
         }
-
-        //public Response ValidateCommand<TCommand>(TCommand command, IEnumerable<IValidator<TCommand>> validators)
-        //{
-        //    if (validators.Any())
-        //    {
-        //        ValidationContext<TCommand> context = new ValidationContext<TCommand>(command);
-        //        List<ValidationResult> source = validators.Select((IValidator<TCommand> v) => v.Validate(context)).ToList();
-        //        List<ValidationFailure> list = (from f in source.SelectMany((ValidationResult r) => r.Errors)
-        //                                        where f != null
-        //                                        select f).ToList();
-        //        if (list.Count != 0)
-        //        {
-        //            ValidationErrorResponse validationErrorResponse = new ValidationErrorResponse();
-        //            foreach (ValidationFailure item in list)
-        //            {
-        //                validationErrorResponse.Add(item.PropertyName, new List<string> { item.ErrorMessage });
-        //            }
-
-        //            return new Response
-        //            {
-        //                ResponseCode = (int)HttpStatusCode.BadRequest,
-        //                Message = "The request contains validation errors.",
-        //                Status = false,
-        //                Data = validationErrorResponse
-        //            };
-        //        }
-        //    }
-
-        //    return null;
-        //}
 
         public Response BadRequest(int entityId, string message)
         {

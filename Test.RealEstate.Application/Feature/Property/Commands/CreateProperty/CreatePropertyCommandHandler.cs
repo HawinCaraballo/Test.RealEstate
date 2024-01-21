@@ -1,12 +1,23 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Application.Feature.Property.Commands.CreateProperty
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="CreatePropertyCommandHandler.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 namespace Test.RealEstate.Application.Feature.Property.Commands.CreateProperty
 {
     using AutoMapper;
-    using FluentValidation;
     using MediatR;
     using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json;
+    using System.Text.Json;
     using System.Threading;
     using System.Threading.Tasks;
     using Test.RealEstate.Application.Behaviours;
@@ -34,24 +45,16 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.CreateProperty
         public async Task<Response> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
         {
             var response = new Response();
-            try
+            _logger.LogInformation(ConstantValidationText.SuccesValidation);
+            var propertyEntity = _mapper.Map<Property>(request);
+            var resultEntity = await _repository.AddAsync(propertyEntity);
+            if (resultEntity != null)
             {
-                _logger.LogInformation(ConstantValidationText.SuccesValidation);
-                var propertyEntity = _mapper.Map<Property>(request);
-                var resultEntity = await _repository.AddAsync(propertyEntity);
-                if (resultEntity != null)
-                {
-                    _logger.LogInformation($"{ConstantConfirmText.SuccessObject} {JsonConvert.SerializeObject(resultEntity)}");
-                    return response.SuccessResponse(_mapper.Map<PropertyDto>(resultEntity), ConstantConfirmText.Success);
-                }
-                _logger.LogInformation(ConstantPropertyText.ErrorCreateProperty);
-                return response.BadRequest(0, ConstantPropertyText.ErrorCreateProperty);
+                _logger.LogInformation($"{ConstantConfirmText.SuccessObject} {JsonSerializer.Serialize(resultEntity)}");
+                return response.SuccessResponse(_mapper.Map<PropertyDto>(resultEntity), ConstantConfirmText.Success);
             }
-            catch (Exception ex)
-            {
-                _logger.LogError($"{ConstantErrorText.ErrorException} Property => ({ex.Message})");
-                return response.CreateInternalServerErrorResponse($"{ConstantErrorText.ErrorException} Property.", ex.Message);
-            }
+            _logger.LogInformation(ConstantPropertyText.ErrorCreateProperty);
+            return response.BadRequest(0, ConstantPropertyText.ErrorCreateProperty);
         }
     }
 }

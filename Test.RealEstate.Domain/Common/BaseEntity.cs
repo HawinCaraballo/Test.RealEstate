@@ -1,4 +1,16 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Domain.Common
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="BaseEntity.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 namespace Test.RealEstate.Domain.Common
 {
     public abstract class BaseEntity

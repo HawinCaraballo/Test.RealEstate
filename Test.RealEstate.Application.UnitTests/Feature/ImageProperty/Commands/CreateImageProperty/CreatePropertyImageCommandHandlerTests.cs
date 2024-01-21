@@ -1,16 +1,16 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
-using Moq;
-using NUnit.Framework;
-using System.Net;
-using Test.RealEstate.Application.Constant.Feature.Property;
-using Test.RealEstate.Application.Constant.Feature.PropertyImage;
-using Test.RealEstate.Application.Feature.ImageProperty.Commands.CreateImageProperty;
-using Test.RealEstate.Application.Interfaces;
-using Test.RealEstate.Domain.Entities;
-
+﻿
 namespace Test.RealEstate.Application.UnitTests.Feature.ImageProperty.Commands.CreateImageProperty
 {
+    using AutoMapper;
+    using Microsoft.Extensions.Logging;
+    using Moq;
+    using NUnit.Framework;
+    using System.Net;
+    using Test.RealEstate.Application.Constant.Feature.PropertyImage;
+    using Test.RealEstate.Application.Feature.ImageProperty.Commands.CreateImageProperty;
+    using Test.RealEstate.Application.Interfaces;
+    using Test.RealEstate.Domain.Entities;
+
     [TestFixture]
     public class CreatePropertyImageCommandHandlerTests
     {

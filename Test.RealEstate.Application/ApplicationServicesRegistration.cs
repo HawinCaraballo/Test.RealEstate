@@ -1,4 +1,16 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Application
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="ApplicationServicesRegistration.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 namespace Test.RealEstate.Application
 {
     using FluentValidation;

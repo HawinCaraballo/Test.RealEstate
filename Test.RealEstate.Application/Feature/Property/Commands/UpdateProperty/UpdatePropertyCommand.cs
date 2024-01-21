@@ -1,5 +1,16 @@
-﻿
-
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Application.Feature.Property.Commands.UpdateProperty
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="UpdatePropertyCommand.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 namespace Test.RealEstate.Application.Feature.Property.Commands.UpdateProperty
 {
     using MediatR;
@@ -13,6 +24,5 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.UpdateProperty
         public string CodeInternal { get; set; } = string.Empty;
         public int Year { get; set; }
         public int IdOwner { get; set; }
-
     }
 }

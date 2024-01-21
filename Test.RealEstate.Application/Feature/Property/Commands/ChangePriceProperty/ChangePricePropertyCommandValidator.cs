@@ -1,29 +1,32 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Application.Feature.Property.Commands.ChangePriceProperty
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="ChangePricePropertyCommandValidator.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 namespace Test.RealEstate.Application.Feature.Property.Commands.ChangePriceProperty
 {
-    using FluentValidation;
-    using Test.RealEstate.Application.Interfaces;
-
+    using FluentValidation;    
     public class ChangePricePropertyCommandValidator : AbstractValidator<ChangePricePropertyCommand>
     {
-        private readonly IPropertyRepository repository;
-        public ChangePricePropertyCommandValidator(IPropertyRepository propertyRepository)
+        
+        public ChangePricePropertyCommandValidator()
         {
-            this.repository = propertyRepository;
-
             RuleFor(p => p.IdProperty)
-                .NotNull()
-                .GreaterThanOrEqualTo(0)   
-                .WithMessage("IdProperty cannot be null");
+                .GreaterThanOrEqualTo(0).WithMessage("IdProperty invalid")
+                .NotNull().WithMessage("IdProperty cannot be null");
 
             RuleFor(p => p.Price)
-                .NotNull()
-                .GreaterThanOrEqualTo(0)
-                .WithMessage("Price cannot be null");
+                .GreaterThanOrEqualTo(0).WithMessage("Price invalid")
+                .NotNull().WithMessage("Price cannot be null");
 
-            RuleFor(p => p.Mensaje)
-                .NotEmpty()
-                .WithMessage("no se permite mensaje vacio.");
         }
     }
 }

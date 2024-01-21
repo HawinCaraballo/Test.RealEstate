@@ -1,10 +1,22 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Application.Feature.Property.Commands.ChangePriceProperty
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="ChangePricePropertyCommandHandler.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 namespace Test.RealEstate.Application.Feature.Property.Commands.ChangePriceProperty
 {
     using AutoMapper;
     using MediatR;
     using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json;
+    using System.Text.Json;
     using Test.RealEstate.Application.Behaviours;
     using Test.RealEstate.Application.Constant;
     using Test.RealEstate.Application.Constant.Feature.Property;
@@ -27,29 +39,20 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.ChangePricePrope
         public async Task<Response> Handle(ChangePricePropertyCommand request, CancellationToken cancellationToken)
         {
             var response = new Response();
-            try
-            {
-                var propertyEntity = await repository.GetByIdAsync(request.IdProperty);
-                if (propertyEntity is null) {
-                    logger.LogInformation(ConstantPropertyText.PropertyNoExists);
-                    return response.BadRequest(request.IdProperty, ConstantPropertyText.PropertyNoExists);
-                }
-                propertyEntity.Price = request.Price;
-                var updateEntity = await repository.UpdateAsync(propertyEntity);
-                if (updateEntity is null)
-                {
-                    logger.LogInformation(ConstantPropertyText.ErrorUpdatePropertyPrice);
-                    return response.BadRequest(request.IdProperty, ConstantPropertyText.ErrorUpdatePropertyPrice);
-                }
-                logger.LogInformation($"{ConstantConfirmText.SuccessObject} {JsonConvert.SerializeObject(updateEntity)}");
-                return response.SuccessResponse(mapper.Map<PropertyDto>(updateEntity), ConstantConfirmText.Success);
-
+            var propertyEntity = await repository.GetByIdAsync(request.IdProperty);
+            if (propertyEntity is null) {
+                logger.LogInformation(ConstantPropertyText.PropertyNoExists);
+                return response.BadRequest(request.IdProperty, ConstantPropertyText.PropertyNoExists);
             }
-            catch (Exception ex)
+            propertyEntity.Price = request.Price;
+            var updateEntity = await repository.UpdateAsync(propertyEntity);
+            if (updateEntity is null)
             {
-                logger.LogError($"{ConstantErrorText.ErrorException} Property => ({ex.Message})");
-                return response.CreateInternalServerErrorResponse($"{ConstantErrorText.ErrorException} Property.", ex.Message);
+                logger.LogInformation(ConstantPropertyText.ErrorUpdatePropertyPrice);
+                return response.BadRequest(request.IdProperty, ConstantPropertyText.ErrorUpdatePropertyPrice);
             }
+            logger.LogInformation($"{ConstantConfirmText.SuccessObject} {JsonSerializer.Serialize(updateEntity)}");
+            return response.SuccessResponse(mapper.Map<PropertyDto>(updateEntity), ConstantConfirmText.Success);
         }
     }
 }

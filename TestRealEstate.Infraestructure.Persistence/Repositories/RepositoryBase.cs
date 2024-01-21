@@ -1,4 +1,17 @@
-﻿namespace Test.RealEstate.Infraestructure.Persistence.Repositories
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Infraestructure.Persistence.Repositories
+// Author           : Hawin Caraballo
+// Created          : 15-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="RepositoryBase.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace Test.RealEstate.Infraestructure.Persistence.Repositories
 {
     using Microsoft.EntityFrameworkCore;
     using Test.RealEstate.Application.Interfaces;
@@ -53,22 +66,6 @@
             _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
             return true;
-        }
-
-        public void AddEntity(T entity)
-        {
-            _context.Set<T>().Add(entity);
-        }
-
-        public void UpdateEntity(T entity)
-        {
-            _context.Set<T>().Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
-        }
-
-        public void DeleteEntity(T entity)
-        {
-            _context.Set<T>().Remove(entity);
         }
     }
 }
