@@ -1,5 +1,6 @@
 ﻿
-namespace Test.RealEstate.Application.UnitTests.Feature.Property.ChangePriceProperty
+
+namespace Test.RealEstate.Application.UnitTests.Feature.Property.Commands.UpdateProperty
 {
     using AutoMapper;
     using Microsoft.Extensions.Logging;
@@ -7,43 +8,53 @@ namespace Test.RealEstate.Application.UnitTests.Feature.Property.ChangePriceProp
     using NUnit.Framework;
     using System.Net;
     using Test.RealEstate.Application.Constant.Feature.Property;
-    using Test.RealEstate.Application.Feature.Property.Commands.ChangePriceProperty;
+    using Test.RealEstate.Application.Feature.Property.Commands.UpdateProperty;
     using Test.RealEstate.Application.Feature.Property.Dtos;
     using Test.RealEstate.Application.Interfaces;
     using Test.RealEstate.Domain.Entities;
 
     [TestFixture]
-    public class ChangePricePropertyTests
+    public class UpdatePropertyCommandHandlerTests
     {
-        private ChangePricePropertyCommandHandler handler;
+        private UpdatePropertyCommandHandler handler;
         private Mock<IPropertyRepository> repositoryMock;
         private Mock<IMapper> mapperMock;
-        private Mock<ILogger<ChangePricePropertyCommandHandler>> loggerMock;
-        private ChangePricePropertyCommand command;
+        private Mock<ILogger<UpdatePropertyCommandHandler>> loggerMock;
+        private UpdatePropertyCommand command;
 
         [SetUp]
         public void SetUp()
         {
             repositoryMock = new Mock<IPropertyRepository>();
             mapperMock = new Mock<IMapper>();
-            loggerMock = new Mock<ILogger<ChangePricePropertyCommandHandler>>();
-            handler = new ChangePricePropertyCommandHandler(repositoryMock.Object, mapperMock.Object, loggerMock.Object);
+            loggerMock = new Mock<ILogger<UpdatePropertyCommandHandler>>();
+            handler = new UpdatePropertyCommandHandler(repositoryMock.Object, mapperMock.Object, loggerMock.Object);
 
-            command = new ChangePricePropertyCommand
+            command = new UpdatePropertyCommand
             {
                 IdProperty = 1,
-                Price = 100
+                Name = "Property_Test",
+                Address = "Calle 100 33 23",
+                CodeInternal = "test123",
+                Year = 2023,
+                Price = 10000,
+                IdOwner = 1
             };
         }
 
         [Test]
-        public async Task Handle_ValidCommand_ReturnsSuccessResponse()
+        public async Task Handle_UpdateProperty_ReturnsSuccessResponse()
         {
             // Arrange
             var existingProperty = new Property
             {
-                IdProperty = command.IdProperty,
-                Price = command.Price,
+                IdProperty = 1,
+                Name = "Old Property_Test",
+                Address = "Carrera 2 44-11",
+                CodeInternal = "code123",
+                Year = 2024,
+                Price = 20000,
+                IdOwner = 1
             };
 
             repositoryMock.Setup(repo => repo.GetByIdAsync(command.IdProperty))
@@ -53,7 +64,15 @@ namespace Test.RealEstate.Application.UnitTests.Feature.Property.ChangePriceProp
                 .ReturnsAsync(existingProperty); 
 
             mapperMock.Setup(mapper => mapper.Map<PropertyDto>(It.IsAny<Property>()))
-                .Returns(new PropertyDto() { IdProperty = command.IdProperty, Name = "testName", Address = "tesAdd", IdOwner = 1, Price = command.Price });
+                .Returns(new PropertyDto {
+                    IdProperty = 1,
+                    Name = command.Name,
+                    Address = command.Address,
+                    CodeInternal = command.CodeInternal,
+                    Year = command.Year,
+                    Price = command.Price,
+                    IdOwner = command.IdOwner
+                });
 
             // Act
             var result = await handler.Handle(command, CancellationToken.None);
@@ -65,7 +84,7 @@ namespace Test.RealEstate.Application.UnitTests.Feature.Property.ChangePriceProp
         }
 
         [Test]
-        public async Task Handle_NonExistentProperty_ReturnsBadRequest()
+        public async Task Handle_PropertyDoesNotExist_ReturnsBadRequest()
         {
             // Act
             var result = await handler.Handle(command, CancellationToken.None);
@@ -75,18 +94,5 @@ namespace Test.RealEstate.Application.UnitTests.Feature.Property.ChangePriceProp
             Assert.That(result.Status, Is.False);
             Assert.That(result.Message, Is.EqualTo(ConstantPropertyText.PropertyNoExists));
         }
-
-        [Test]
-        public async Task Handle_ErrorUpdateProperty_ReturnsBadRequest()
-        {
-            // Act
-            var result = await handler.Handle(command, CancellationToken.None);
-
-            // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Status, Is.False);
-            Assert.That(result.Message, Is.EqualTo(ConstantPropertyText.ErrorUpdatePropertyPrice));
-        }
-
     }
 }

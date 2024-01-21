@@ -13,7 +13,7 @@ namespace Test.RealEstate.Domain.Entities
         public int IdProperty { get; set; }
         public byte[] File { get; set; } = [];
         public bool Enabled { get; set; }
-        public string LastName { get; set; } = string.Empty;
+        public string FileName { get; set; } = string.Empty;
         public virtual Property IdPropertyNavigation { get; set; } = null!;
     }
 }

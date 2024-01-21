@@ -121,7 +121,7 @@ namespace Test.RealEstate.Infraestructure.Persistence.Context
                 entity.Property(e => e.LastModifiedBy)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-                entity.Property(e => e.LastName)
+                entity.Property(e => e.FileName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
