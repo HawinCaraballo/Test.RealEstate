@@ -1,6 +1,20 @@
-﻿namespace Test.RealState.API.Controllers
+﻿// ***********************************************************************
+// Assembly         : Test.RealState.API.Controllers
+// Author           : Hawin Caraballo
+// Created          : 21-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="PropertyImageController.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace Test.RealState.API.Controllers
 {
     using MediatR;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using System.Net;
@@ -21,8 +35,8 @@
         }
 
         [HttpPost("Create")]
+        [Authorize]
         [ProducesResponseType(typeof(Response<int>), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Method to create a PropertyImage", Description = "Create a PropertyImage and return the created values")]
         /// <summary>

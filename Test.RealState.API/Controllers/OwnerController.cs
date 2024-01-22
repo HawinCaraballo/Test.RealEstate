@@ -1,6 +1,20 @@
-﻿namespace Test.RealState.API.Controllers
+﻿// ***********************************************************************
+// Assembly         : Test.RealState.API.Controllers
+// Author           : Hawin Caraballo
+// Created          : 21-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="OwnerController.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace Test.RealState.API.Controllers
 {
     using MediatR;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using System.Net;
@@ -19,6 +33,7 @@
         }
 
         [HttpPost("Create")]
+        [Authorize]
         [ProducesResponseType(typeof(Response<int>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Method to create a owner", Description = "Create a owner and return the created values")]
