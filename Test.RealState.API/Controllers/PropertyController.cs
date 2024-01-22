@@ -1,6 +1,7 @@
 ﻿namespace Test.RealState.API.Controllers
 {
     using MediatR;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using System.Net;
@@ -24,8 +25,8 @@
         }
 
         [HttpPost("Create")]
+        [Authorize]
         [ProducesResponseType(typeof(Response<int>), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Method to create a property", Description = "Create a property and return the created values")]
         /// <summary>
@@ -46,8 +47,8 @@
         }
 
         [HttpPut("Update")]
+        [Authorize]
         [ProducesResponseType(typeof(Response<PropertyDto>), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Method to update an existing property", Description = "update an existing property and return the update values")]
         /// <summary>
@@ -68,8 +69,8 @@
         }
 
         [HttpPut("ChangePrice")]
+        [Authorize]
         [ProducesResponseType(typeof(Response<PropertyDto>), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Method to update price of an existing property", Description = "update price of an existing property and return the update values")]
         /// <summary>
@@ -91,8 +92,8 @@
 
 
         [HttpGet("List")]
+        [Authorize]
         [ProducesResponseType(typeof(Response<List<PropertyDto>>), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType(typeof(Response<IEnumerable<ValidationErrorResponse>>), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Response), (int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(Summary = "Get a list of all properties", Description = "Retrieve a list of all properties.")]
         /// <summary>

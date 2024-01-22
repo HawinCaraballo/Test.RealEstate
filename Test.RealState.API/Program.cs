@@ -2,6 +2,7 @@ using Microsoft.OpenApi.Models;
 using Test.RealEstate.API.Middlewares;
 using Test.RealEstate.Application;
 using Test.RealEstate.Infraestructure.Persistence;
+using Test.RealEstate.Infraestructure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,13 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastuctureServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddCors(options => 
+{
+    options.AddPolicy("CorsPolicy", builder => builder.AllowAnyMethod()
+    .AllowAnyOrigin()
+    .AllowAnyHeader());
+});
 
 var app = builder.Build();
 
@@ -37,7 +45,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors("CorsPolicy");
 
 app.MapControllers();
 

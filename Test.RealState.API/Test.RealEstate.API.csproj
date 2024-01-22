@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Test.RealEstate.Application\Test.RealEstate.Application.csproj" />
+    <ProjectReference Include="..\Test.RealEstate.Infraestructure.Identity\Test.RealEstate.Infraestructure.Identity.csproj" />
     <ProjectReference Include="..\TestRealEstate.Infraestructure.Persistence\Test.RealEstate.Infraestructure.Persistence.csproj" />
   </ItemGroup>
 

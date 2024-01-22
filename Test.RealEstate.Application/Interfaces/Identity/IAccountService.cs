@@ -1,21 +1,23 @@
 ﻿// ***********************************************************************
-// Assembly         : Test.RealEstate.Application.Constant.Feature.Owner
+// Assembly         : Test.RealEstate.Application.Interfaces.Identity
 // Author           : Hawin Caraballo
 // Created          : 21-01-2024
 //
 // Last Modified By : 
 // Last Modified On : 
 // ***********************************************************************
-// <copyright file="ConstantOwnerText.cs">
+// <copyright file="IAccountService.cs">
 //     Copyright (c) All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-namespace Test.RealEstate.Application.Constant.Feature.Owner
+namespace Test.RealEstate.Application.Interfaces.Identity
 {
-    public abstract class ConstantOwnerText
+    using Test.RealEstate.Application.Models.Account;
+    public interface IAccountService
     {
-        public const string OwnerNoExists = "Owner does not exist.";
-        public const string ErrorCreateOwner = "Error create Owner.";
+        Task<AuthenticationResponse> Login(AuthenticationRequest request);
+        Task<RegisterResponse> Register(RegisterRequest request);
+
     }
 }

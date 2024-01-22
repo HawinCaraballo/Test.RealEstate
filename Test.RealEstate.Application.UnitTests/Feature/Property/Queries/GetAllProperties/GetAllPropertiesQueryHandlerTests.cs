@@ -1,4 +1,16 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : Test.RealEstate.Application.UnitTests.Feature.Property.Queries.GetAllProperties
+// Author           : Hawin Caraballo
+// Created          : 21-01-2024
+//
+// Last Modified By : 
+// Last Modified On : 
+// ***********************************************************************
+// <copyright file="GetAllPropertiesQueryHandlerTests.cs">
+//     Copyright (c) All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 namespace Test.RealEstate.Application.UnitTests.Feature.Property.Queries.GetAllProperties
 {
     using AutoMapper;

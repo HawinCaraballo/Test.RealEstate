@@ -20,11 +20,11 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.ChangePricePrope
         public ChangePricePropertyCommandValidator()
         {
             RuleFor(p => p.IdProperty)
-                .GreaterThanOrEqualTo(0).WithMessage("IdProperty invalid")
+                .GreaterThan(0).WithMessage("IdProperty cannot be zero (0)")
                 .NotNull().WithMessage("IdProperty cannot be null");
 
             RuleFor(p => p.Price)
-                .GreaterThanOrEqualTo(0).WithMessage("Price invalid")
+                .GreaterThan(0).WithMessage("Price cannot be zero (0)")
                 .NotNull().WithMessage("Price cannot be null");
 
         }

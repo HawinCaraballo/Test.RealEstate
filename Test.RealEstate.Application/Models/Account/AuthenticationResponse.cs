@@ -1,21 +1,23 @@
 ﻿// ***********************************************************************
-// Assembly         : Test.RealEstate.Application.Constant.Feature.Owner
+// Assembly         : Test.RealEstate.Application.Models.Account
 // Author           : Hawin Caraballo
 // Created          : 21-01-2024
 //
 // Last Modified By : 
 // Last Modified On : 
 // ***********************************************************************
-// <copyright file="ConstantOwnerText.cs">
+// <copyright file="AuthenticationResponse.cs">
 //     Copyright (c) All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-namespace Test.RealEstate.Application.Constant.Feature.Owner
+namespace Test.RealEstate.Application.Models.Account
 {
-    public abstract class ConstantOwnerText
+    public class AuthenticationResponse
     {
-        public const string OwnerNoExists = "Owner does not exist.";
-        public const string ErrorCreateOwner = "Error create Owner.";
+        public string Id { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Token { get; set; } = string.Empty;
     }
 }

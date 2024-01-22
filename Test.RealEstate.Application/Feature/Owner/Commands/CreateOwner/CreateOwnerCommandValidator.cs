@@ -19,10 +19,12 @@ namespace Test.RealEstate.Application.Feature.Owner.Commands.CreateOwner
         public CreateOwnerCommandValidator() 
         {
             RuleFor(p => p.Name)
-                .Empty().NotNull().WithMessage("Name cannot be null");
+                .Empty().WithMessage("Name cannot be empty")
+                .NotNull().WithMessage("Name cannot be null");
 
             RuleFor(p => p.Address)
-                .Empty().NotNull().WithMessage("Address cannot be null");
+                .Empty().WithMessage("Address cannot be empty")
+                .NotNull().WithMessage("Address cannot be null");
         }
     }
 }

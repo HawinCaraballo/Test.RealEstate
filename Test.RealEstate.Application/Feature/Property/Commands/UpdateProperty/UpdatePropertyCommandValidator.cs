@@ -19,6 +19,7 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.UpdateProperty
         public UpdatePropertyCommandValidator()
         {
             RuleFor(p => p.IdProperty)
+                .GreaterThan(0).WithMessage("IdProperty cannot be zero (0)")
                 .NotNull().WithMessage("Name cannot be null");
         }
     }

@@ -20,21 +20,22 @@ namespace Test.RealEstate.Application.Feature.Property.Commands.CreateProperty
         public CreatePropertyCommandValidator()
         {
             RuleFor(p => p.Name)
-                .NotNull().NotEmpty().WithMessage("Name cannot be null");
+                .NotEmpty().WithMessage("Name cannot be empty")
+                .NotNull().WithMessage("Name cannot be null");
 
             RuleFor(p => p.Address)
-                .NotNull().NotEmpty().WithMessage("Address cannot be null");
+                .NotEmpty().WithMessage("Address cannot be empty")
+                .NotNull().WithMessage("Address cannot be null");
 
             RuleFor(p => p.Price)
                 .NotNull().WithMessage("Price cannot be null");
 
-            RuleFor(p => p.CodeInternal)
-                .NotNull().WithMessage("CodeInternal cannot be null");
-
             RuleFor(p => p.Year)
+                .GreaterThan(0).WithMessage("Year cannot be zero (0)")
                 .NotNull().WithMessage("Year cannot be null");
 
             RuleFor(p => p.IdOwner)
+                .GreaterThan(0).WithMessage("IdOwner cannot be zero (0)")
                 .NotNull().WithMessage("IdOwner cannot be null");
         }
     }

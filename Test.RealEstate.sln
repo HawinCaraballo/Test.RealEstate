@@ -28,6 +28,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.RealEstate.API", "Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.RealEstate.Application.UnitTests", "Test.RealEstate.Application.UnitTests\Test.RealEstate.Application.UnitTests.csproj", "{ACF61080-A078-4944-A3D8-EEE2C604E461}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.RealEstate.Infraestructure.Identity", "Test.RealEstate.Infraestructure.Identity\Test.RealEstate.Infraestructure.Identity.csproj", "{83F84058-797A-4F54-99CC-6C3627EB0A00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{ACF61080-A078-4944-A3D8-EEE2C604E461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACF61080-A078-4944-A3D8-EEE2C604E461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACF61080-A078-4944-A3D8-EEE2C604E461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83F84058-797A-4F54-99CC-6C3627EB0A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83F84058-797A-4F54-99CC-6C3627EB0A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83F84058-797A-4F54-99CC-6C3627EB0A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83F84058-797A-4F54-99CC-6C3627EB0A00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{9DDF0F73-8291-4E8A-A2CC-07CDCEA55ABD} = {CE8F6BF7-E96B-4F6B-AD21-34E2CC827F2F}
 		{440AF87A-DF27-4F25-A5D2-29353A07240C} = {ABB5EF45-65FD-44B0-A1DF-BEFE677B9A1B}
 		{ACF61080-A078-4944-A3D8-EEE2C604E461} = {C0126A9E-94E2-4462-B6D8-42DB4FC39761}
+		{83F84058-797A-4F54-99CC-6C3627EB0A00} = {CE8F6BF7-E96B-4F6B-AD21-34E2CC827F2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4BDEDC2-1C49-4464-B01C-BE4F5BA785B6}
